@@ -11,14 +11,22 @@ const AddPostForm = () => {
   const [isDisabled, setIsDisabled] = useState(true);
 
   const { mutate } = useMutation(
-    async (title: String) => await axios.post("/api/posts/posts", { title })
+    async (title: string) => await axios.post("/api/posts/addPost", { title }),
+    {
+      onError: (err) => {
+        console.log(err);
+      },
+      onSuccess: (data) => {
+        setTitle("");
+        setIsDisabled(false);
+      },
+    }
   );
 
   const submitPost = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsDisabled(true);
     mutate(title);
-    setIsDisabled(false);
   };
 
   return (
