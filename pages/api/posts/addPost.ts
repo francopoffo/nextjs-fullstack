@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "../auth/[...nextauth].js";
-import prisma from "../../../prisma/client.js";
+import prisma from "../../../prisma/client.tsx";
 
 export default async function handler(
   req: NextApiRequest,
@@ -12,14 +12,14 @@ export default async function handler(
     if (!session) {
       return res
         .status(401)
-        .json({ message: "Please signin to create a post." });
+        .json({ message: "Please sign in to create a post." });
     }
 
     const title: string = req.body.title;
 
     //Get User
     const prismaUser = await prisma.user.findUnique({
-      where: { email: session?.user?.email },
+      where: { email: session?.user?.email! },
     });
     //Check title
     if (title.length > 300) {
@@ -35,7 +35,7 @@ export default async function handler(
       const result = await prisma.post.create({
         data: {
           title,
-          userId: prismaUser.id,
+          userId: prismaUser!.id,
         },
       });
       res.status(200).json(result);
