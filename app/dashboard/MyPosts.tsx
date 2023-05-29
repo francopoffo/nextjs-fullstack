@@ -3,7 +3,7 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { AuthPostType } from "../types/AuthPost";
-import Post from "../components/Post";
+import EditPost from "./EditPost";
 
 const fetchAuthPosts = async () => {
   const response = await axios.get("/api/posts/authPosts");
@@ -18,7 +18,7 @@ const MyPosts = () => {
 
   if (isLoading)
     return (
-      <p className="flex justify-center text-lg font-bold text-gray-700">
+      <p className="my-8 flex justify-center text-lg font-bold text-gray-700">
         Loading the page...
       </p>
     );
@@ -26,7 +26,7 @@ const MyPosts = () => {
   return (
     <div>
       {data?.posts.map((post) => (
-        <Post
+        <EditPost
           key={post.id}
           id={post.id}
           postTitle={post.title}

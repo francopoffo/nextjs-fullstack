@@ -20,7 +20,7 @@ const Home = () => {
   if (error) return error;
   if (isLoading)
     return (
-      <p className="flex justify-center text-lg font-bold text-gray-700">
+      <p className="my-8 flex justify-center text-lg font-bold text-gray-700">
         Loading the page...
       </p>
     );
