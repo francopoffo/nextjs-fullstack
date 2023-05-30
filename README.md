@@ -10,6 +10,10 @@ It is also my first time using some libraries that I consider essential in moder
 
 I used [prisma](https://www.prisma.io/), to configure my Postgres database, which is very intuitive ORM, and [Railway](https://railway.app/dashboard) to create the database.
 
+For authentication I used Next's own lib [next-auth](https://next-auth.js.org/).
+
+For notifications I used [react-hot-toast](https://react-hot-toast.com/).
+
 ## Getting Started
 
 First, run the development server:
