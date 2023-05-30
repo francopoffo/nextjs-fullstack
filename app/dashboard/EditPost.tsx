@@ -7,6 +7,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import axios, { AxiosError } from "axios";
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 type EditProps = {
   id: string;
@@ -75,9 +76,9 @@ export default function EditPost({
           <p className="break-all">{postTitle}</p>
         </div>
         <div className="flex items-center gap-4 ">
-          <p className=" text-sm font-bold text-gray-700">
-            {comments?.length} Comments
-          </p>
+          <Link href={`/post/${id}`}>
+            <p className="text-sm font-bold text-gray-700">{`${comments?.length} Comments`}</p>
+          </Link>
           <button
             onClick={(e) => {
               e.stopPropagation();
